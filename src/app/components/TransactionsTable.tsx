@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState } from 'react';
 import TableComponent from './TableComponent';
 import { fetchTransactions } from '@/app/actions/fetchTransactions';

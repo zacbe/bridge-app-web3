@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { submitForm } from '@/app/actions/form';
+import { submitForm } from '@/app/actions/submitBridgeForm';
 import { useAuth } from '@/context/AuthContext';
 
 enum SupportedNetworks {

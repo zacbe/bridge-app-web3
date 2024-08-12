@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ClipboardDocumentIcon } from '@heroicons/react/24/solid';
 import { BridgeTransaction } from '@/types/bridgeTransaction';
 
