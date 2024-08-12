@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 
-const bridge_url = process.env.BRIDGE_BACKEND_URL || 'http://localhost:3001/api/v1/bridge';
+const bridge_url = process.env.NEXT_PUBLIC_BRIDGE_BACKEND_URL
 
 export async function fetchTransactions(signer: ethers.JsonRpcSigner) {
   try {
@@ -8,7 +8,8 @@ export async function fetchTransactions(signer: ethers.JsonRpcSigner) {
     const message = `Fetching transactions for ${address}`;
     const signature = await signer.signMessage(message);
 
-    const url = new URL(`${bridge_url}/transactions/${address}`);
+    const path = `transactions/${address}`;
+    const url = new URL(`${bridge_url}/${path}`);
     const response = await fetch(url.toString(), {
       method: 'GET',
       headers: {
