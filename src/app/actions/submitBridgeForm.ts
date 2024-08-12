@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 
-const bridge_url = process.env.BRIDGE_BACKEND_URL!;
+const bridge_url = process.env.NEXT_PUBLIC_BRIDGE_BACKEND_URL!;
 
 export async function submitForm(formData: FormData, signer: ethers.JsonRpcSigner) {
   const amount = formData.get('amount');
@@ -10,8 +10,6 @@ export async function submitForm(formData: FormData, signer: ethers.JsonRpcSigne
   if (!amount || !sourceNetwork || !destinationNetwork) {
     throw new Error('Missing required fields');
   }
-
-  console.log({amount, sourceNetwork, destinationNetwork})
 
   const payload = {
     amount,
@@ -24,7 +22,8 @@ export async function submitForm(formData: FormData, signer: ethers.JsonRpcSigne
     const signature = await signer.signMessage(dataToSign);
     const address = await signer.getAddress();
 
-    const url = new URL("http://localhost:3001/api/v1/bridge");
+    const path = 'bridge';
+    const url = new URL(`${bridge_url}/${path}`);
     const response = await fetch(url.toString(), {
       method: 'POST',
       headers: {
